@@ -30,6 +30,6 @@ export const removeSocket = (id) => {
 
 export const broadcast = (message) => {
   for (const socket of Object.values(sockets)) {
-    socket.send(message);
+    socket.send(JSON.stringify(message));
   }
 };
