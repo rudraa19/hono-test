@@ -4,11 +4,23 @@ globalThis.todos = todos;
 export const addTodo = (todo) => {
   todos.push(todo);
   globalThis.todos = todos;
+  broadcast({
+    event: "ADD",
+    data: {
+      id: todo.id
+    }
+  })
 };
 
 export const removeTodo = (id) => {
   todos = todos.filter((todo) => todo.id != id);
   globalThis.todos = todos;
+  broadcast({
+    event: "DEL",
+    data: {
+      id
+    }
+  })
 };
 
 export let sockets = globalThis.sockets || {};

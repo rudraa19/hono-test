@@ -8,6 +8,7 @@ delTodoByIdRoute.delete("/:id", (c) => {
     removeTodo(id);
     console.log(todos)
     return c.json({
-        todos
+        error: false,
+        message: "Todo Deleted",
     })
 })

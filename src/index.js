@@ -5,7 +5,6 @@ import { getTodoByIdRoute } from "./routes/getById";
 import { putTodoByIdRoute } from "./routes/putById";
 import { delTodoByIdRoute } from "./routes/delById";
 import { eventsRoute, websocket } from "./routes/events";
-import { createBunWebSocket } from "hono/bun";
 
 const app = new Hono();
 

@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { broadcast } from "../store";
 
 export const putTodoByIdRoute = new Hono();
 
@@ -31,6 +32,13 @@ putTodoByIdRoute.put("/:id", async (ctx) => {
 
   if (title) todo.title = title;
   if (desc) todo.desc = desc;
+
+  broadcast({
+    event: "UPD",
+    data: {
+      id
+    }
+  })
 
   return ctx.json(
     {
