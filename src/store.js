@@ -7,6 +7,6 @@ export const addTodo = (todo) => {
 };
 
 export const removeTodo = (id) => {
-  todos = todos.filter((todo) => todo.id !== id);
+  todos = todos.filter((todo) => todo.id != id);
   globalThis.todos = todos;
 };
