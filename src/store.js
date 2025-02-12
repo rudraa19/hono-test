@@ -1,4 +1,4 @@
-export const todos = globalThis.todos || [];
+export let todos = globalThis.todos || [];
 globalThis.todos = todos;
 
 export const addTodo = (todo) => {
