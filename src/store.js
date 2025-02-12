@@ -27,3 +27,9 @@ export const removeSocket = (id) => {
   delete sockets[id];
   globalThis.sockets = sockets;
 };
+
+export const broadcast = (message) => {
+  for (const socket of Object.values(sockets)) {
+    socket.send(message);
+  }
+};
