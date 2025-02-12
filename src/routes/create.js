@@ -1,6 +1,6 @@
 import { Hono } from "hono";
-import { todos } from "../store"
-import { randomUUID } from "node:crypto"
+import { todos } from "../store";
+import { randomUUID } from "node:crypto";
 export const createRoute = new Hono();
 
 createRoute.post("/", async (c) => {
@@ -9,15 +9,13 @@ createRoute.post("/", async (c) => {
   todos.push({
     id,
     title,
-    desc
-  })
+    desc,
+  });
   return c.json({
     error: false,
     message: "Todos Stored",
     data: {
-      id
+      id,
     },
-
   });
 });
-

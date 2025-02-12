@@ -1,8 +1,8 @@
 import { Hono } from "hono";
 
-export const getTodoByIdRoute = new Hono();
+export const putTodoByIdRoute = new Hono();
 
-getTodoByIdRoute.get("/:id", (ctx) => {
+putTodoByIdRoute.put("/:id", async (ctx) => {
   const id = ctx.req.param("id");
 
   if (!id) {
@@ -27,10 +27,15 @@ getTodoByIdRoute.get("/:id", (ctx) => {
     );
   }
 
+  const { title, desc } = await ctx.req.json();
+
+  if (title) todo.title = title;
+  if (desc) todo.desc = desc;
+
   return ctx.json(
     {
       error: false,
-      message: "Todo Fetched",
+      message: "Todo Updated",
       data: todo,
     },
     200
