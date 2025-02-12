@@ -1,5 +1,7 @@
 import { Hono } from "hono";
 import { createBunWebSocket } from "hono/bun";
+import { addSocket } from "../store";
+import { randomUUID } from "node:crypto";
 
 export const { upgradeWebSocket, websocket } = createBunWebSocket();
 
@@ -10,6 +12,7 @@ eventsRoute.get(
   upgradeWebSocket(() => {
     return {
       onOpen(ws) {
+        addSocket(ws, randomUUID());
         console.log("Connection Opened");
       },
       onMessage(event, ws) {
