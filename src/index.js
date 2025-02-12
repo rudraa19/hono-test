@@ -4,6 +4,8 @@ import { getRoute } from "./routes/get";
 import { getTodoByIdRoute } from "./routes/getById";
 import { putTodoByIdRoute } from "./routes/putById";
 import { delTodoByIdRoute } from "./routes/delById";
+import { eventsRoute, websocket } from "./routes/events";
+import { createBunWebSocket } from "hono/bun";
 
 const app = new Hono();
 
@@ -11,6 +13,11 @@ app.route("/todos", createRoute);
 app.route("/todos", getRoute);
 app.route("/todos", getTodoByIdRoute);
 app.route("/todos", putTodoByIdRoute);
-app.route("/todos", delTodoByIdRoute)
+app.route("/todos", delTodoByIdRoute);
+app.route("/", eventsRoute);
 
-export default app;
+export default {
+  fetch: app.fetch,
+  port: 3000,
+  websocket,
+};
